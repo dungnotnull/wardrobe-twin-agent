@@ -1,0 +1,36 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install core deps
+        run: pip install -e .
+      - name: Ruff lint
+        run: pip install ruff && ruff check backend/ config/
+      - name: Python syntax check
+        run: python -c "import ast, pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('backend').rglob('*.py')]"
+
+  test-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install UI deps
+        run: cd ui && npm ci
+      - name: Type check
+        run: cd ui && npx tsc --noEmit
+      - name: Build check
+        run: cd ui && npm run build

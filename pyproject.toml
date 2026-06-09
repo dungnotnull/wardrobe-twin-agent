@@ -1,0 +1,74 @@
+[project]
+name = "wardrobe-twin-agent"
+version = "1.0.0"
+description = "AI-powered virtual fitting room and smart wardrobe manager"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "transformers>=4.40.0",
+    "diffusers>=0.27.0",
+    "accelerate>=0.30.0",
+    "opencv-python>=4.9.0",
+    "Pillow>=10.3.0",
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+    "websockets>=12.0",
+    "cryptography>=42.0.0",
+    "anthropic>=0.28.0",
+    "openai>=1.30.0",
+    "sentence-transformers>=3.0.0",
+    "numpy>=1.26.0",
+    "scipy>=1.13.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.2.0",
+    "python-multipart>=0.0.9",
+    "aiofiles>=23.2.0",
+    "aiohttp>=3.9.0",
+    "httpx>=0.27.0",
+    "apscheduler>=3.10.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.2.0",
+    "feedparser>=6.0.0",
+]
+
+[project.optional-dependencies]
+# Heavy ML models that may require special install steps
+# Install with: pip install -e ".[ml-heavy]"
+ml-heavy = [
+    "detectron2>=0.6",
+    "mediapipe>=0.10.0",
+    "segment-anything>=1.0",
+    "scikit-learn>=1.4.0",
+]
+# GPU-specific PyTorch
+gpu = ["torch>=2.2.0+cu121"]
+# Development tools
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*", "config*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

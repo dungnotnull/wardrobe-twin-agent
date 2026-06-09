@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Wardrobe Twin Agent",
+  "version": "0.1.0",
+  "description": "AI-powered virtual try-on from e-commerce product pages",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.shopee.com/*",
+    "https://*.lazada.com/*",
+    "https://*.zara.com/*",
+    "https://*.hm.com/*",
+    "https://*.asos.com/*",
+    "https://*.amazon.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.shopee.com/*",
+        "https://*.lazada.com/*",
+        "https://*.zara.com/*",
+        "https://*.hm.com/*",
+        "https://*.asos.com/*"
+      ],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

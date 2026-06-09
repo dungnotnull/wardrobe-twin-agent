@@ -1,0 +1,65 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+ENV/
+
+# Node / UI
+node_modules/
+ui/dist/
+ui/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data (keep structure, ignore content)
+*.db
+data/models/*.pth
+data/models/*.bin
+data/models/*.safetensors
+data/models/*.json
+data/models/*.txt
+data/avatars/*.obj
+data/avatars/*.png
+data/avatars/*.jpg
+data/wardrobe_images/*.png
+data/wardrobe_images/*.jpg
+data/wardrobe_images/*.jpeg
+data/cache/*
+
+# Keep .gitkeep files
+!data/**/.gitkeep
+
+# ML model caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+huggingface/
+torch_extensions/
+
+# Logs
+*.log
+
+# Encryption keys (never commit)
+*.key
+*.pem
